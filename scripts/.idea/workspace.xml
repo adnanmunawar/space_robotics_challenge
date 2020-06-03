@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fdf4ab25-8a08-4a42-b63b-ae5fc06063bf" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cj3N2gLzq5xz9TwZbOVvwPlknK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/ambf/ambf_ros_modules/ambf_comm/scripts" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$USER_HOME$/ambf/ambf_ros_modules/ambf_comm/scripts" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.remote_controller">
+    <configuration name="ik_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ik_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="new_types_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ambf_comm" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/ambf/ambf_ros_modules/ambf_comm/scripts/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/ambf/ambf_ros_modules/ambf_comm/scripts/tests/new_types_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="remote_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/remote_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Nosetests in ik_test.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/ik_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.remote_controller" />
+        <item itemvalue="Python.new_types_test" />
+        <item itemvalue="Python.ik_test" />
+        <item itemvalue="Python tests.Nosetests in ik_test.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fdf4ab25-8a08-4a42-b63b-ae5fc06063bf" name="Default Changelist" comment="" />
+      <created>1591028131539</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591028131539</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1121" y="628" width="308" height="222" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1591028247205">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state x="1121" y="628" width="308" height="222" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591028247205" />
+    <state x="1063" y="493" width="424" height="491" key="FileChooserDialogImpl" timestamp="1591032419325">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state x="1063" y="493" width="424" height="491" key="FileChooserDialogImpl/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591032419325" />
+    <state width="2539" height="214" key="GridCell.Tab.0.bottom" timestamp="1591156566646">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="214" key="GridCell.Tab.0.bottom/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591156566646" />
+    <state width="2539" height="146" key="GridCell.Tab.0.bottom/2560.0.2560.1080/0.32.2560.1408@2560.0.2560.1080" timestamp="1591151705396" />
+    <state width="2539" height="214" key="GridCell.Tab.0.center" timestamp="1591156566646">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="214" key="GridCell.Tab.0.center/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591156566646" />
+    <state width="2539" height="146" key="GridCell.Tab.0.center/2560.0.2560.1080/0.32.2560.1408@2560.0.2560.1080" timestamp="1591151705395" />
+    <state width="2539" height="214" key="GridCell.Tab.0.left" timestamp="1591156566645">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="214" key="GridCell.Tab.0.left/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591156566645" />
+    <state width="2539" height="146" key="GridCell.Tab.0.left/2560.0.2560.1080/0.32.2560.1408@2560.0.2560.1080" timestamp="1591151705395" />
+    <state width="2539" height="214" key="GridCell.Tab.0.right" timestamp="1591156566646">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="214" key="GridCell.Tab.0.right/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591156566646" />
+    <state width="2539" height="146" key="GridCell.Tab.0.right/2560.0.2560.1080/0.32.2560.1408@2560.0.2560.1080" timestamp="1591151705396" />
+    <state width="2539" height="484" key="GridCell.Tab.1.bottom" timestamp="1591114597776">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="484" key="GridCell.Tab.1.bottom/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591114597776" />
+    <state width="2539" height="484" key="GridCell.Tab.1.center" timestamp="1591114597776">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="484" key="GridCell.Tab.1.center/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591114597776" />
+    <state width="2539" height="484" key="GridCell.Tab.1.left" timestamp="1591114597776">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="484" key="GridCell.Tab.1.left/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591114597776" />
+    <state width="2539" height="484" key="GridCell.Tab.1.right" timestamp="1591114597776">
+      <screen x="0" y="32" width="2560" height="1408" />
+    </state>
+    <state width="2539" height="484" key="GridCell.Tab.1.right/2560.0.2560.1080/0.32.2560.1408@0.32.2560.1408" timestamp="1591114597776" />
+  </component>
+</project>

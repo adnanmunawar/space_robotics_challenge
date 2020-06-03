@@ -1,0 +1,15 @@
+# Blender MTL File: 'HDU_Astronaut.blend'
+# Material Count: 1
+
+newmtl Baked
+Ns 254.901961
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.200000 0.200000 0.200000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd z2_Color_s.png
+map_Bump z2_Bump_s.png
+map_Ks z2_spec_color_s.png

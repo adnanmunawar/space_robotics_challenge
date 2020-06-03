@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/ambf/ambf_ros_modules/ambf_comm/.idea/ambf_comm.iml" filepath="$USER_HOME$/ambf/ambf_ros_modules/ambf_comm/.idea/ambf_comm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/scripts.iml" filepath="$PROJECT_DIR$/.idea/scripts.iml" />
+    </modules>
+  </component>
+</project>
