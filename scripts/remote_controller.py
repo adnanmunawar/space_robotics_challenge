@@ -67,7 +67,11 @@ class JoyStickDevice:
         self.c1 = False
         self.c2 = False
 
-        self.mode = 1
+        self.mode = 0
+
+        self._rover_initialized = False
+        self._rover_power_scale = 200.0
+        self._rover_steering_scale = 0.3
 
     def bind_objects(self, ambf_client, obj_names):
         for obj_name in obj_names:
@@ -129,13 +133,21 @@ class JoyStickDevice:
         if self._subs_active and self._active_obj is not None:
             self._is_obj_active = True
             if self._is_obj_active:
-                if self._active_obj.get_name() == '/ambf/env/Chassis':
+                if self._active_obj.get_name() == '/ambf/env/Rover':
                     if self.mode == 0:
-                        torque = self.base_scale * self._joy_msg.axes[self._axis_0]
-                        self._active_obj.set_joint_effort(0, torque)
-                        self._active_obj.set_joint_effort(1, torque)
-                        self._active_obj.set_joint_effort(2, torque)
-                        self._active_obj.set_joint_effort(3, torque)
+                        if not self._rover_initialized:
+                            # The vehicle in this case has four wheels.
+                            # Set the 3rd and 4th wheel as powered wheel.
+                            self._active_obj.set_powered_wheel_indices([2, 3])
+                            # Set the 1st and 2nd wheel as steerable wheel.
+                            self._active_obj.set_steered_wheel_indices([0, 1])
+                            self._rover_initialized = True
+                        else:
+                            power = -self._joy_msg.axes[self._axis_0]
+                            steering = self._joy_msg.axes[self._axis_1]
+                            self._active_obj.set_vehicle_power(self._rover_power_scale * power)
+                            self._active_obj.set_vehicle_steering(self._rover_steering_scale * steering)
+
                     elif self.mode == 1:
                         force_scale = 600.0
                         cur_pos = self._active_obj.get_pos()
@@ -163,23 +175,23 @@ class JoyStickDevice:
                         self._joint_cmds[0] = self._joint_cmds[0] + self.arm_scale * self._joy_msg.axes[self._axis_1]
                         self._joint_cmds[1] = self._joint_cmds[1] - self.arm_scale * self._joy_msg.axes[self._axis_0]
 
-
                     for i in range(4):
                         self._active_obj.set_joint_pos(i, self._joint_cmds[i])
                         # print self._joint_cmds
 
-                if self._joy_msg.buttons[6]:
-                    if self._sensor.is_triggered(0) and self.c1 == False:
+                if self._joy_msg.buttons[7]:
+                    # print 'Grasp Button Pressed'
+                    if self._sensor.is_triggered(0) and not self.c1:
                         obj_name = self._sensor.get_sensed_object(0)
-                        print 'Graping', obj_name
+                        print 'Grasping', obj_name
                         print type(obj_name)
-                        self._actuator0.actuate(obj_name.data)
+                        self._actuator0.actuate(obj_name)
                         self.c1 = True
 
-                    if self._sensor.is_triggered(1) and self.c2 == False:
+                    if self._sensor.is_triggered(1) and not self.c2:
                         obj_name = self._sensor.get_sensed_object(1)
-                        print 'Graping', obj_name
-                        self._actuator1.actuate(obj_name.data)
+                        print 'Grasping', obj_name
+                        self._actuator1.actuate(obj_name)
                         self.c2 = True
                 else:
                     self._actuator0.deactuate()
@@ -192,6 +204,7 @@ class JoyStickDevice:
             if self._msg_counter >= 1000:
                 self._msg_counter = 0
             self._msg_counter = self._msg_counter + 1
+
 
 def main():
     # Begin Argument Parser Code
@@ -225,7 +238,7 @@ def main():
     _pub_freq = 60
 
     joystick_one = JoyStickDevice(parsed_args.joystick_name)
-    joystick_one.bind_objects(client, ['Chassis', 'arm_link1'])
+    joystick_one.bind_objects(client, ['Rover', 'arm_link1'])
     _joy_stick_ccus.append(joystick_one)
 
     rate = rospy.Rate(_pub_freq)
@@ -238,7 +251,7 @@ def main():
 
         rate.sleep()
         msg_index = msg_index + 1
-        if msg_index % _pub_freq * 5 == 0:
+        if msg_index % _pub_freq * 50 == 0:
             # Print every 3 seconds as a flag to show that this code is alive
             print('Running JoyStick Controller Node...', round(rospy.get_time() - _start_time, 3), 'secs')
         if msg_index >= _pub_freq * 10:
