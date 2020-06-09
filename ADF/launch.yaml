@@ -4,7 +4,6 @@ world config: ./world/world.yaml
 color config: ./color/colors.yaml
 input devices config: ./input_devices/input_devices.yaml
 multibody configs:
-  - "./DSU/ground.yaml" #0
-  - "./DSU/rover.yaml" #1
-  - "./DSU/rover_info.yaml" #2
-  - "./DSU/sensors_actuators.yaml" #3
+  - "./DSU/rover.yaml" #0
+  - "./DSU/rover_info.yaml" #1
+  - "./DSU/sensors_actuators.yaml" #2

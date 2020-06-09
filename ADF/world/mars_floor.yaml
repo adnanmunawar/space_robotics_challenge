@@ -5,8 +5,8 @@
 bodies:
 - BODY Plane
 joints: []
-high resolution path: ../../meshes/world/checkered_floor/high_res/
-low resolution path: ../../meshes/world/checkered_floor/low_res/
+high resolution path: ../DSU/high_res/
+low resolution path: ../DSU//low_res/
 ignore inter-collision: false
 namespace: /ambf/env/
 BODY Plane:

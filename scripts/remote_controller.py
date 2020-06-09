@@ -73,6 +73,8 @@ class JoyStickDevice:
         self._rover_power_scale = 200.0
         self._rover_steering_scale = 0.3
 
+        self._arm_joint_limits = [[-0.3, 0.3], [-0.3, 0.3], [-1.047, 1.047], [-2.094, 2.094]]
+
     def bind_objects(self, ambf_client, obj_names):
         for obj_name in obj_names:
             obj_handle = ambf_client.get_obj_handle(obj_name)
@@ -174,6 +176,11 @@ class JoyStickDevice:
                         self._joint_cmds[3] = self._joint_cmds[3] - self.arm_scale * self._joy_msg.axes[self._axis_2]
                         self._joint_cmds[0] = self._joint_cmds[0] + self.arm_scale * self._joy_msg.axes[self._axis_1]
                         self._joint_cmds[1] = self._joint_cmds[1] - self.arm_scale * self._joy_msg.axes[self._axis_0]
+
+                        for i in range(len(self._arm_joint_limits)):
+                            min_lim = self._arm_joint_limits[i][0]
+                            max_lim = self._arm_joint_limits[i][1]
+                            self._joint_cmds[i] = max(min(self._joint_cmds[i], max_lim), min_lim)
 
                     for i in range(4):
                         self._active_obj.set_joint_pos(i, self._joint_cmds[i])
