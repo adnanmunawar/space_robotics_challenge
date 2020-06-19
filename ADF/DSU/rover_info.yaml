@@ -112,3 +112,33 @@ Vehicle Rover:
       max engine power: *default_max_engine_power
       max brake power: *default_max_brake_power
       steering limits: *default_steering_limits
+    -
+      # mesh: Wheel1.STL
+      body: BODY Wheel5
+      radius: *default_radius
+      width: 0.3
+      friction: *default_friction
+      suspension: *default_suspension
+      roll influence: *default_roll_inf
+      down direction: *default_down_dir
+      axel direction: *default_axel_dir
+      offset: {x: 0.0, y: *default_left, z: *default_height}
+      front: False
+      max engine power: *default_max_engine_power
+      max brake power: *default_max_brake_power
+      steering limits: *default_steering_limits
+    -
+      # mesh: Wheel1.STL
+      body: BODY Wheel6
+      radius: *default_radius
+      width: 0.3
+      friction: *default_friction
+      suspension: *default_suspension
+      roll influence: *default_roll_inf
+      down direction: *default_down_dir
+      axel direction: *default_axel_dir
+      offset: {x: 0.0, y: *default_right, z: *default_height}
+      front: False
+      max engine power: *default_max_engine_power
+      max brake power: *default_max_brake_power
+      steering limits: *default_steering_limits

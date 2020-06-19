@@ -51,10 +51,11 @@ class JoyStickDevice:
         self._active_obj = None
         self._active_obj_idx = -1
 
-        self.arm_scale = 0.005
+        self.arm_cmd_scale = 0.005
+        self.arm_vel_scale = 2.0
         self.base_scale = 50.0
 
-        self._joint_cmds = [0.0, 0.0, 0.0, 0.0, 0.0]
+        self._joint_cmds = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
         # Buttons Configuration
         self._prev_obj_button_idx = 4
@@ -67,13 +68,14 @@ class JoyStickDevice:
         self.c1 = False
         self.c2 = False
 
-        self.mode = 0
+        self.vehicle_control_mode = 0
+        self.arm_control_mode = 1
 
         self._rover_initialized = False
         self._rover_power_scale = 200.0
         self._rover_steering_scale = 0.3
 
-        self._arm_joint_limits = [[-0.3, 0.3], [-0.3, 0.3], [-1.047, 1.047], [-2.094, 2.094]]
+        self._arm_joint_limits = [[-0.3, 0.3], [-0.3, 0.3], [-1.047, 1.047], [-2.094, 2.094], [0, 0.1], [0, 0.1]]
 
     def bind_objects(self, ambf_client, obj_names):
         for obj_name in obj_names:
@@ -136,21 +138,24 @@ class JoyStickDevice:
             self._is_obj_active = True
             if self._is_obj_active:
                 if self._active_obj.get_name() == '/ambf/env/Rover':
-                    if self.mode == 0:
+                    if self.vehicle_control_mode == 0:
                         if not self._rover_initialized:
                             # The vehicle in this case has four wheels.
                             # Set the 3rd and 4th wheel as powered wheel.
-                            self._active_obj.set_powered_wheel_indices([2, 3])
+                            self._active_obj.set_powered_wheel_indices([2, 3, 4, 5])
                             # Set the 1st and 2nd wheel as steerable wheel.
                             self._active_obj.set_steered_wheel_indices([0, 1])
                             self._rover_initialized = True
                         else:
-                            power = -self._joy_msg.axes[self._axis_0]
                             steering = self._joy_msg.axes[self._axis_1]
+                            if self._joy_msg.buttons[6]:
+                                power = 1.0
+                            else:
+                                power = -self._joy_msg.axes[self._axis_0]
                             self._active_obj.set_vehicle_power(self._rover_power_scale * power)
                             self._active_obj.set_vehicle_steering(self._rover_steering_scale * steering)
 
-                    elif self.mode == 1:
+                    elif self.vehicle_control_mode == 1:
                         force_scale = 600.0
                         cur_pos = self._active_obj.get_pos()
                         cur_rot = self._active_obj.get_rot()
@@ -168,25 +173,41 @@ class JoyStickDevice:
                         self._active_obj.set_torque(n_oINw[0], n_oINw[1], n_oINw[2])
 
                 elif self._active_obj.get_name() == '/ambf/env/arm_link1':
-                    jnt_pos = [0.0]*4
-                    for i in range(4):
-                        jnt_pos[i] = self._active_obj.get_joint_pos(i)
+                    if self.arm_control_mode == 0:
+                        jnt_pos = [0.0] * 4
+                        for i in range(4):
 
-                        self._joint_cmds[2] = self._joint_cmds[2] + self.arm_scale * self._joy_msg.axes[self._axis_3]
-                        self._joint_cmds[3] = self._joint_cmds[3] - self.arm_scale * self._joy_msg.axes[self._axis_2]
-                        self._joint_cmds[0] = self._joint_cmds[0] + self.arm_scale * self._joy_msg.axes[self._axis_1]
-                        self._joint_cmds[1] = self._joint_cmds[1] - self.arm_scale * self._joy_msg.axes[self._axis_0]
+                            self._joint_cmds[2] = self.arm_vel_scale * self._joy_msg.axes[self._axis_3]
+                            self._joint_cmds[3] = -self.arm_vel_scale * self._joy_msg.axes[self._axis_2]
+                            self._joint_cmds[0] = self.arm_vel_scale * self._joy_msg.axes[self._axis_1]
+                            self._joint_cmds[1] = -self.arm_vel_scale * self._joy_msg.axes[self._axis_0]
 
-                        for i in range(len(self._arm_joint_limits)):
-                            min_lim = self._arm_joint_limits[i][0]
-                            max_lim = self._arm_joint_limits[i][1]
-                            self._joint_cmds[i] = max(min(self._joint_cmds[i], max_lim), min_lim)
+                        for i in range(6):
+                            self._active_obj.set_joint_vel(i, self._joint_cmds[i])
+                            # print self._joint_cmds
 
-                    for i in range(4):
-                        self._active_obj.set_joint_pos(i, self._joint_cmds[i])
-                        # print self._joint_cmds
+                    elif self.arm_control_mode == 1:
+                        jnt_pos = [0.0]*4
+                        for i in range(4):
+                            jnt_pos[i] = self._active_obj.get_joint_pos(i)
+
+                            self._joint_cmds[2] = self._joint_cmds[2] + self.arm_cmd_scale * self._joy_msg.axes[self._axis_3]
+                            self._joint_cmds[3] = self._joint_cmds[3] - self.arm_cmd_scale * self._joy_msg.axes[self._axis_2]
+                            self._joint_cmds[0] = self._joint_cmds[0] + self.arm_cmd_scale * self._joy_msg.axes[self._axis_1]
+                            self._joint_cmds[1] = self._joint_cmds[1] - self.arm_cmd_scale * self._joy_msg.axes[self._axis_0]
+
+                            for i in range(4):
+                                min_lim = self._arm_joint_limits[i][0]
+                                max_lim = self._arm_joint_limits[i][1]
+                                self._joint_cmds[i] = max(min(self._joint_cmds[i], max_lim), min_lim)
+
+                        for i in range(4):
+                            self._active_obj.set_joint_pos(i, self._joint_cmds[i])
+                            # print self._joint_cmds
 
                 if self._joy_msg.buttons[7]:
+                    # self._joint_cmds[4] = self._arm_joint_limits[4][1]
+                    # self._joint_cmds[5] = self._arm_joint_limits[5][1]
                     # print 'Grasp Button Pressed'
                     if self._sensor.is_triggered(0) and not self.c1:
                         obj_name = self._sensor.get_sensed_object(0)
@@ -201,6 +222,8 @@ class JoyStickDevice:
                         self._actuator1.actuate(obj_name)
                         self.c2 = True
                 else:
+                    # self._joint_cmds[4] = self._arm_joint_limits[4][0]
+                    # self._joint_cmds[5] = self._arm_joint_limits[5][0]
                     self._actuator0.deactuate()
                     self._actuator1.deactuate()
                     self.c1 = False

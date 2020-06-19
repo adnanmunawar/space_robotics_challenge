@@ -30,7 +30,7 @@ ACTUATOR Constraint0:
   type: Constraint
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
-    position: {x: 0.0, y: 0.05, z: 0.233}
+    position: {x: 0.0, y: 0.05, z: 0.433}
   parent: /ambf/env/BODY arm_link5
   visible: True
 
@@ -39,6 +39,6 @@ ACTUATOR Constraint1:
   type: Constraint
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
-    position: {x: 0.0, y: -0.05, z: 0.233}
+    position: {x: 0.0, y: -0.05, z: 0.433}
   parent: /ambf/env/BODY arm_link5
   visible: True
