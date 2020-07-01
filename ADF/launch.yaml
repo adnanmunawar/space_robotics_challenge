@@ -10,3 +10,4 @@ multibody configs:
   - "./DSU/sensors_actuators.yaml" #3
   - "./terrain/env.yaml" #4
   - "./insertion_task/env.yaml" #5
+  - "./insertion_task2/env.yaml" #6

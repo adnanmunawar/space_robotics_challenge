@@ -1,2 +1,4 @@
 *.~
 *.old
+*.blend1
+*.pyc

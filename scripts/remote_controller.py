@@ -62,11 +62,8 @@ class JoyStickDevice:
         self._next_obj_button_idx = 5
 
         self._sensor = None
-        self._actuator0 = None
-        self._actuator1 = None
-
-        self.c1 = False
-        self.c2 = False
+        self._actuators = []
+        self._actuator_activated = []
 
         self.vehicle_control_mode = 0
         self.arm_control_mode = 1
@@ -75,7 +72,7 @@ class JoyStickDevice:
         self._rover_power_scale = 200.0
         self._rover_steering_scale = 0.3
 
-        self._arm_joint_limits = [[-0.3, 0.3], [-0.3, 0.3], [-1.047, 1.047], [-2.094, 2.094], [0, 0.1], [0, 0.1]]
+        self._arm_joint_limits = [[-0.5, 0.5], [-0.6, 0.6], [-1.047, 1.047], [-2.094, 2.094], [0, 0.1], [0, 0.1]]
 
     def bind_objects(self, ambf_client, obj_names):
         for obj_name in obj_names:
@@ -95,8 +92,11 @@ class JoyStickDevice:
 
         # Get the actuator and the sensors
         self._sensor = ambf_client.get_obj_handle('Proximity0')
-        self._actuator0 = ambf_client.get_obj_handle('Constraint0')
-        self._actuator1 = ambf_client.get_obj_handle('Constraint1')
+        self._actuators.append(ambf_client.get_obj_handle('Constraint0'))
+        self._actuators.append(ambf_client.get_obj_handle('Constraint1'))
+        self._actuators.append(ambf_client.get_obj_handle('Constraint2'))
+        self._actuators.append(ambf_client.get_obj_handle('Constraint3'))
+        self._actuator_activated = [False, False, False, False]
 
     def choose_active_obj(self, idx):
         if 0 <= idx < self._total_objs:
@@ -209,25 +209,19 @@ class JoyStickDevice:
                     # self._joint_cmds[4] = self._arm_joint_limits[4][1]
                     # self._joint_cmds[5] = self._arm_joint_limits[5][1]
                     # print 'Grasp Button Pressed'
-                    if self._sensor.is_triggered(0) and not self.c1:
-                        obj_name = self._sensor.get_sensed_object(0)
-                        print 'Grasping', obj_name
-                        print type(obj_name)
-                        self._actuator0.actuate(obj_name)
-                        self.c1 = True
-
-                    if self._sensor.is_triggered(1) and not self.c2:
-                        obj_name = self._sensor.get_sensed_object(1)
-                        print 'Grasping', obj_name
-                        self._actuator1.actuate(obj_name)
-                        self.c2 = True
+                    for i in range(self._sensor.get_count()):
+                        if self._sensor.is_triggered(i) and self._actuator_activated[i] is False:
+                            obj_name = self._sensor.get_sensed_object(i)
+                            print 'Grasping ', obj_name, ' via actuator ', i
+                            print type(obj_name)
+                            self._actuators[i].actuate(obj_name)
+                            self._actuator_activated[i] = True
                 else:
-                    # self._joint_cmds[4] = self._arm_joint_limits[4][0]
-                    # self._joint_cmds[5] = self._arm_joint_limits[5][0]
-                    self._actuator0.deactuate()
-                    self._actuator1.deactuate()
-                    self.c1 = False
-                    self.c2 = False
+                    for i in range(self._sensor.get_count()):
+                        self._actuators[i].deactuate()
+                        if self._actuator_activated[i] is True:
+                            print 'Releasing object from actuator ', i
+                        self._actuator_activated[i] = False
 
             if self._msg_counter % 100 == 0:
                 pass
@@ -283,7 +277,8 @@ def main():
         msg_index = msg_index + 1
         if msg_index % _pub_freq * 50 == 0:
             # Print every 3 seconds as a flag to show that this code is alive
-            print('Running JoyStick Controller Node...', round(rospy.get_time() - _start_time, 3), 'secs')
+            # print('Running JoyStick Controller Node...', round(rospy.get_time() - _start_time, 3), 'secs')
+            pass
         if msg_index >= _pub_freq * 10:
             # After ten seconds, reset, no need to keep increasing this
             msg_index = 0

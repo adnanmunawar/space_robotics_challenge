@@ -1,7 +1,7 @@
 bodies: []
 joints: []
 sensors: [SENSOR Proximity0]
-actuators: [ACTUATOR Constraint0, ACTUATOR Constraint1]
+actuators: [ACTUATOR Constraint0, ACTUATOR Constraint1, ACTUATOR Constraint2, ACTUATOR Constraint3]
 high resolution path: ../../../meshes/grippers/pr2_gripper/high_res/
 low resolution path: ../../../meshes/grippers/pr2_gripper/low_res/
 ignore inter-collision: true
@@ -20,6 +20,12 @@ SENSOR Proximity0:
       direction: {x: 0.0, y: 0.0, z: 1.0}
     -
       offset: {x: 0.0, y: -0.05, z: 0.0}
+      direction: {x: 0.0, y: 0.0, z: 1.0}
+    -
+      offset: {x: 0.05, y: 0.0, z: 0.0}
+      direction: {x: 0.0, y: 0.0, z: 1.0}
+    -
+      offset: {x: -0.05, y: 0.0, z: 0.0}
       direction: {x: 0.0, y: 0.0, z: 1.0}
   range: 0.2
   parent: /ambf/env/BODY arm_link5
@@ -40,5 +46,23 @@ ACTUATOR Constraint1:
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
     position: {x: 0.0, y: -0.05, z: 0.433}
+  parent: /ambf/env/BODY arm_link5
+  visible: True
+
+ACTUATOR Constraint2:
+  name: Constraint2
+  type: Constraint
+  location:
+    orientation: {p: 0.0, r: 0.0, y: 0.0}
+    position: {x: 0.05, y: 0.0, z: 0.433}
+  parent: /ambf/env/BODY arm_link5
+  visible: True
+
+ACTUATOR Constraint3:
+  name: Constraint3
+  type: Constraint
+  location:
+    orientation: {p: 0.0, r: 0.0, y: 0.0}
+    position: {x: -0.05, y: 0.0, z: 0.433}
   parent: /ambf/env/BODY arm_link5
   visible: True
