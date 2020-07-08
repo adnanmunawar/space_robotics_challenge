@@ -5,15 +5,11 @@ color config: ./color/colors.yaml
 input devices config: ./input_devices/input_devices.yaml
 multibody configs:
   - "./DSU/env.yaml" #0
-  - "./DSU/rover.yaml" #1
-  - "./DSU/rover_info.yaml" #2
-  - "./DSU/sensors_actuators.yaml" #3
-  - "./terrain/env.yaml" #4
-  - "./insertion_task/env.yaml" #5
-  - "./insertion_task2/env.yaml" #6
-  - "./DSU/rover1.yaml" #7
-  - "./DSU/rover1_info.yaml" #8
-  - "./DSU/sensors_actuators1.yaml" #9
-  - "./DSU/rover2.yaml" #10
-  - "./DSU/rover2_info.yaml" #11
-  - "./DSU/sensors_actuators2.yaml" #12
+  - "./terrain/env.yaml" #1
+  - "./DSU/rover1.yaml" #2
+  - "./DSU/rover1_info.yaml" #3
+  - "./DSU/sensors_actuators1.yaml" #4
+  - "./DSU/rover2.yaml" #5
+  - "./DSU/rover2_info.yaml" #6
+  - "./DSU/sensors_actuators2.yaml" #7
+  - "./insertion_task2/env.yaml" #8
