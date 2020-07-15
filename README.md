@@ -5,9 +5,9 @@ To run the galen robot simulation, first clone the right branch of ambf.
 
 ``` bash
 cd ambf
-git checkout origin/feat-communication
-git checkout -b feat-communication
-git pull origin feat-communication
+git checkout origin/ambf-1.0
+git checkout -b ambf-1.0
+git pull origin ambf-1.0
 ```
 
 Make a build directory if it is not already there
