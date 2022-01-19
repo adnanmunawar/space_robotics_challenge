@@ -11,12 +11,18 @@ gravity: {x: 0.0, y: 0.0, z: -3.711}
 #   fragment: shader.fs
 skybox:
   path: ./skybox/galaxy/
-  right: px.png
-  left:  nx.png
-  top: py.png
-  bottom: ny.png
-  front: pz.png
-  back: nz.png
+  # right: py.png
+  # left:  ny.png
+  # top: pz.png
+  # bottom: nz.png
+  # back: px.png
+  # front: nx.png
+  right: ny.png
+  left:  py.png
+  top: pz.png
+  bottom: nz.png
+  front: px.png
+  back: nx.png
   shaders:
     path: ./skybox/
     vertex: "shader.vs"

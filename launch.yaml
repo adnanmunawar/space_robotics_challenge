@@ -1,0 +1,15 @@
+# This is the base file for Coordination Application
+world config: ./ADF/world/world.yaml
+# world config: ./world/raven_world.yaml
+color config: ./ADF/color/colors.yaml
+input devices config: ./ADF/input_devices/input_devices.yaml
+multibody configs:
+  - "./ADF/DSU/env.yaml" #0
+  - "./ADF/terrain/env.yaml" #1
+  - "./ADF/DSU/rover1.yaml" #2
+  - "./ADF/DSU/rover1_info.yaml" #3
+  - "./ADF/DSU/sensors_actuators1.yaml" #4
+  - "./ADF/DSU/rover2.yaml" #5
+  - "./ADF/DSU/rover2_info.yaml" #6
+  - "./ADF/DSU/sensors_actuators2.yaml" #7
+  - "./ADF/insertion_task2/env.yaml" #8
