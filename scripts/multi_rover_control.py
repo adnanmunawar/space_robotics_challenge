@@ -52,9 +52,9 @@ class ControlUnit:
         self._arm_handle = arm
         self._sensor = sensor
         self._actuators = actuators
-        self._actuator_activated = []
+        self._grasped = []
         for i in range(len(self._actuators)):
-            self._actuator_activated.append(False)
+            self._grasped.append(False)
 
         # The vehicle in this case has 6 wheels.
         # Set the 3rd, 4th, 5th and 6th wheel as powered wheels.
@@ -117,18 +117,17 @@ class ControlUnit:
             if self._js_handle.joy_msg.buttons[7]:
                 # print 'Grasp Button Pressed'
                 for i in range(self._sensor.get_count()):
-                    if self._sensor.is_triggered(i) and self._actuator_activated[i] is False:
+                    if self._sensor.is_triggered(i) and self._grasped[i] is False:
                         obj_name = self._sensor.get_sensed_object(i)
                         print 'Grasping ', obj_name, ' via actuator ', i
-                        print type(obj_name)
                         self._actuators[i].actuate(obj_name)
-                        self._actuator_activated[i] = True
+                        self._grasped[i] = True
             else:
                 for i in range(self._sensor.get_count()):
                     self._actuators[i].deactuate()
-                    if self._actuator_activated[i] is True:
+                    if self._grasped[i] is True:
                         print 'Releasing object from actuator ', i
-                    self._actuator_activated[i] = False
+                    self._grasped[i] = False
 
 
 def main():
@@ -169,7 +168,7 @@ def main():
         sensor = client.get_obj_handle(rover_prefix + 'Proximity0')
         actuators = []
         for j in range(num_actuators):
-            actuator = client.get_obj_handle(rover_prefix + 'Constraint' + str(i))
+            actuator = client.get_obj_handle(rover_prefix + 'Constraint' + str(j))
             actuators.append(actuator)
 
         # If you have multiple Joysticks, you can pass in different names

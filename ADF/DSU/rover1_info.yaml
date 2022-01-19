@@ -11,8 +11,8 @@ ignore inter-collision: true
 namespace: /ambf/env/rover1/
 
 friction: &default_friction 100.0
-radius: &default_radius 0.3
-radius: &default_width 0.5
+radius: &default_radius 0.24
+width: &default_width 0.5
 roll influence: &default_roll_inf 1.0
 
 height: &default_height -0.1

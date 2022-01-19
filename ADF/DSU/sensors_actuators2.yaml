@@ -36,7 +36,7 @@ ACTUATOR Constraint0:
   type: Constraint
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
-    position: {x: 0.0, y: 0.05, z: 0.433}
+    position: {x: 0.0, y: 0.05, z: 0.2}
   parent: rover2/BODY arm_link5
   visible: True
 
@@ -45,7 +45,7 @@ ACTUATOR Constraint1:
   type: Constraint
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
-    position: {x: 0.0, y: -0.05, z: 0.433}
+    position: {x: 0.0, y: -0.05, z: 0.2}
   parent: rover2/BODY arm_link5
   visible: True
 
@@ -54,7 +54,7 @@ ACTUATOR Constraint2:
   type: Constraint
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
-    position: {x: 0.05, y: 0.0, z: 0.433}
+    position: {x: 0.05, y: 0.0, z: 0.2}
   parent: rover2/BODY arm_link5
   visible: True
 
@@ -63,6 +63,6 @@ ACTUATOR Constraint3:
   type: Constraint
   location:
     orientation: {p: 0.0, r: 0.0, y: 0.0}
-    position: {x: -0.05, y: 0.0, z: 0.433}
+    position: {x: -0.05, y: 0.0, z: 0.2}
   parent: rover2/BODY arm_link5
   visible: True
